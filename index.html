@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset=utf-8>
-<title>Geometric Fractals</title>
+<title> Geometric Fractals Illustrations </title>
 </head>
 
 <BODY>
- 
-  <LABEL> Fractal type: </LABEL>                    // creates a button to choose type of fractal from given options.
+
+  <LABEL> Fractal type: </LABEL>
   <SELECT id='ntypes' onchange="typeChange();">
     <OPTION value="0">-1-Koch Snowflake</OPTION>
     <OPTION value="1">...Koch Snowflake Inverse</OPTION>
@@ -20,9 +20,9 @@
     <OPTION value="8">-5-Sierpinski Triangle 1</OPTION>
     <OPTION value="9">...Sierpinski Triangle 2</OPTION>
   </SELECT>
-  
 
-  <LABEL> Level: </LABEL>               // creates a button to choose level of the fractal.
+
+  <LABEL> Level: </LABEL>
   <SELECT id='nLevels' onchange="levelChange();">
     <OPTION value="0">0</OPTION>
     <OPTION value="1">1</OPTION>
@@ -34,8 +34,7 @@
     <OPTION value="7">7</OPTION>
   </SELECT>
 
-  <P>                               // creates an canvas of specified size to draw the fractal figures.
-  <canvas id="mycanvas" width="800" height="800"
+ <canvas id="mycanvas" width="800" height="800"
         onmousedrag="moveHandler(event);"
         onmousedown="mouseDownHandler(event);">
   This text is displayed if your browser does not support HTML5 Canvas.
@@ -219,7 +218,7 @@
             xlP[2] = 2;
             xlP[3] = -2;
             break;
-     
+
         default :
             var xct = 3;
             var multiple = 4;
@@ -274,12 +273,12 @@
         var mycanvas = document.getElementById('mycanvas');
         var context = mycanvas.getContext('2d');
         context.clearRect(0, 0, mycanvas.width, mycanvas.height);
-        context.strokeStyle = "rgb(0,127,255)";                     //defines color of lines 
+        context.strokeStyle = "rgb(0,127,255)";                     //defines color of lines
         context.fillStyle = "rgb(255,127,0)";                       //defines coler to be filled in diagram.
         var xOld, yOld;
         var position = typ%2;
         var cx = 500, cy = 330 + position*270, rx = 280, ry = -280; //initial point information.
-        x = 0.5;                                                   
+        x = 0.5;
         y = 0.5;
         context.beginPath();                                    //function to begin the path.
         context.moveTo(cx + x * rx, cy + y * ry);               //goes to specified new point drawing a straight line.
@@ -299,7 +298,7 @@
 
     function typeChange()              // function to change type.
     {
-        var ntypesCtl = document.getElementById('ntypes'); 
+        var ntypesCtl = document.getElementById('ntypes');
         typ = ntypesCtl.selectedIndex;
         levelChange();
     }
