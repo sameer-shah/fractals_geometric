@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=utf-8>
+<title>Geometric Fractals</title>
+</head>
+
+<BODY>
+ 
+  <LABEL> Fractal type: </LABEL>                    // creates a button to choose type of fractal from given options.
+  <SELECT id='ntypes' onchange="typeChange();">
+    <OPTION value="0">-1-Koch Snowflake</OPTION>
+    <OPTION value="1">...Koch Snowflake Inverse</OPTION>
+    <OPTION value="2">-2-Triangle, both side growth </OPTION>
+    <OPTION value="3">...Triangle, both side growth Inverse</OPTION>
+    <OPTION value="4">-3-Both sided triangle</OPTION>
+    <OPTION value="5">...Both sided triangle Inverse</OPTION>
+    <OPTION value="6">-4-Tringle, alternate side growth </OPTION>
+    <OPTION value="7">...Tringle, alternate side growth Inverse</OPTION>
+    <OPTION value="8">-5-Sierpinski Triangle 1</OPTION>
+    <OPTION value="9">...Sierpinski Triangle 2</OPTION>
+  </SELECT>
+  
+
+  <LABEL> Level: </LABEL>               // creates a button to choose level of the fractal.
+  <SELECT id='nLevels' onchange="levelChange();">
+    <OPTION value="0">0</OPTION>
+    <OPTION value="1">1</OPTION>
+    <OPTION value="2">2</OPTION>
+    <OPTION value="3">3</OPTION>
+    <OPTION value="4">4</OPTION>
+    <OPTION value="5">5</OPTION>
+    <OPTION value="6">6</OPTION>
+    <OPTION value="7">7</OPTION>
+  </SELECT>
+
+  <P>                               // creates an canvas of specified size to draw the fractal figures.
+  <canvas id="mycanvas" width="800" height="800"
+        onmousedrag="moveHandler(event);"
+        onmousedown="mouseDownHandler(event);">
+  This text is displayed if your browser does not support HTML5 Canvas.
+  </canvas>
+
+  <script type="text/javascript">
+  <!--
+    var typ, nLev;
+
+    function moveHandler(event)
+    {
+    }
+    function mouseDownHandler(event)
+    {
+    }
+    function drawSnowFlake(typ, nLev)               // function to draw the diagram.
+    {
+        switch (typ) {
+
+        case 0:                                 // case wise information is stored.
+            var xct = 3;                        // xct is number of sides at the begining.
+            var multiple = 4;                   // multiple is the variable which tells how is one side converted in next level.
+            var factor = 3;                     // factor is factor by which length of one side is reduced in next level.
+            var xside = 1.5;                    // xside is intial side length.
+            var xP = new Array(xct);            // xP array stores information about angles for initial diagram.
+            xP[0] = 2;
+            xP[1] = 2;
+            xP[2] = 2;
+            var xlP = new Array(multiple-1)     //xlP array stores information about angles for fractal to be made.
+            xlP[0] = -1;
+            xlP[1] =  2;
+            xlP[2] = -1;
+            break;
+        case 1:
+            var xct = 3;
+            var multiple = 4;
+            var factor = 3;
+            var xside = 1.5;
+            var xP = new Array(xct);
+            xP[0] = -2;
+            xP[1] = -2;
+            xP[2] = -2;
+            var xlP = new Array(multiple-1)
+            xlP[0] = -1;
+            xlP[1] =  2;
+            xlP[2] = -1;
+            break;
+
+        case 2:
+            var xct = 3;
+            var multiple = 7;
+            var factor = 3;
+            var xside = 1.5;
+            var xP = new Array(xct);
+            xP[0] = 2;
+            xP[1] = 2;
+            xP[2] = 2;
+            var xlP = new Array(multiple-1)
+            xlP[0] = -1;
+            xlP[1] = 2;
+            xlP[2] = 1;
+            xlP[3] = 2;
+            xlP[4] = 2;
+            xlP[5] = 0;
+            break;
+        case 3:
+            var xct = 3;
+            var multiple = 7;
+            var factor = 3;
+            var xside = 1.5;
+            var xP = new Array(xct);
+            xP[0] = -2;
+            xP[1] = -2;
+            xP[2] = -2;
+            var xlP = new Array(multiple-1)
+            xlP[0] = -1;
+            xlP[1] = 2;
+            xlP[2] = 1;
+            xlP[3] = 2;
+            xlP[4] = 2;
+            xlP[5] = 0;
+            break;
+
+        case 4:
+            var xct = 6;
+            var multiple = 4;
+            var factor = 3;
+            var xside = 1.5;
+            var xP = new Array(xct);
+            xP[0] = -3;
+            xP[1] = 2;
+            xP[2] = 2;
+            xP[3] = 3;
+            xP[4] = -2;
+            xP[5] = -2;
+            var xlP = new Array(multiple-1)
+            xlP[0] = -1;
+            xlP[1] =  2;
+            xlP[2] = -1;
+            break;
+        case 5:
+            var xct = 6;
+            var multiple = 4;
+            var factor = 3;
+            var xside = 1.5;
+            var xP = new Array(xct);
+            xP[0] = 3;
+            xP[1] = 2;
+            xP[2] = 2;
+            xP[3] = -3;
+            xP[4] = -2;
+            xP[5] = -2;
+            var xlP = new Array(multiple-1)
+            xlP[0] = -1;
+            xlP[1] =  2;
+            xlP[2] = -1;
+            break;
+
+        case 6:
+            var xct = 3;
+            var multiple = 7;
+            var factor = 5;
+            var xside = 1.5;
+            var xP = new Array(xct);
+            xP[0] = 2;
+            xP[1] = 2;
+            xP[2] = 2;
+            var xlP = new Array(multiple-1)
+            xlP[0] = -1;
+            xlP[1] =  2;
+            xlP[2] = -1;
+            xlP[3] = 1;
+            xlP[4] = -2;
+            xlP[5] = 1;
+            break;
+        case 7:
+            var xct = 3;
+            var multiple = 7;
+            var factor = 5;
+            var xside = 1.5;
+            var xP = new Array(xct);
+            xP[0] = -2;
+            xP[1] = -2;
+            xP[2] = -2;
+            var xlP = new Array(multiple-1)
+            xlP[0] = -1;
+            xlP[1] =  2;
+            xlP[2] = -1;
+            xlP[3] = 1;
+            xlP[4] = -2;
+            xlP[5] = 1;
+            break;
+
+        case 8:
+            var xct = 3;
+            var multiple = 5;
+            var factor = 2;
+            var xside = 0.8;
+            var xP = new Array(xct);
+            xP[0] = 2;
+            xP[1] = 2;
+            xP[2] = 2;
+            var xlP = new Array(multiple-1)
+            xlP[0] = -2;
+            xlP[1] = 2;
+            xlP[2] = 2;
+            xlP[3] = -2;
+            break;
+        case 9:
+            var xct = 3;
+            var multiple = 5;
+            var factor = 2;
+            var xside = 1.6;
+            var xP = new Array(xct);
+            xP[0] = -2;
+            xP[1] = -2;
+            xP[2] = -2;
+            var xlP = new Array(multiple-1)
+            xlP[0] = -2;
+            xlP[1] = 2;
+            xlP[2] = 2;
+            xlP[3] = -2;
+            break;
+     
+        default :
+            var xct = 3;
+            var multiple = 4;
+            var factor = 3;
+            var xP = new Array(xct);
+            xP[0] = 2;
+            xP[1] = 2;
+            xP[2] = 2;
+            var xlP = new Array(multiple-1)
+            xlP[0] = -1;
+            xlP[1] =  2;
+            xlP[2] = -1;
+            break;
+
+        }
+
+
+        var ct = xct;                   // this part of code create arreays for complete diagram.
+        for (i = 0; i < nLev; i++)
+           {ct *= multiple;}
+        var i, j, k, l;
+        var oldP = new Array(ct);
+        var P = new Array(ct);
+        var tmpP;
+        var x, y, side;
+        side = xside;
+        for(l = 0; l < multiple-1; l++)
+            {P[l] = xP[l];}
+        ct = xct;
+        for (i = 0; i < nLev; i++) {
+            tmpP = oldP;
+            oldP = P;
+            P = tmpP;
+            k = 0;
+            for (j = 0; j < ct; j++) {
+                for(l = 0; l < multiple-1; l++) {
+                    P[k+l] = xlP[l];
+                }
+                P[k+multiple-1] = oldP[j];
+                k += multiple;
+            }
+            ct *= multiple;
+            side /= factor;
+        }
+        /*
+        var txt = "";
+        for (i = 0; i < ct; i++)
+            txt = txt + " " + P[i];
+        alert(txt);
+        */
+        var ang = Math.PI;
+        var mycanvas = document.getElementById('mycanvas');
+        var context = mycanvas.getContext('2d');
+        context.clearRect(0, 0, mycanvas.width, mycanvas.height);
+        context.strokeStyle = "rgb(0,127,255)";                     //defines color of lines 
+        context.fillStyle = "rgb(255,127,0)";                       //defines coler to be filled in diagram.
+        var xOld, yOld;
+        var position = typ%2;
+        var cx = 500, cy = 330 + position*270, rx = 280, ry = -280; //initial point information.
+        x = 0.5;                                                   
+        y = 0.5;
+        context.beginPath();                                    //function to begin the path.
+        context.moveTo(cx + x * rx, cy + y * ry);               //goes to specified new point drawing a straight line.
+        for (i = 0; i < ct; i++) {                              // changes directions.
+            x += side * Math.cos(ang);
+            y += side * Math.sin(ang);
+            context.lineTo(cx + x * rx, cy + y * ry);
+            ang += P[i] * Math.PI/3;                            //changes information about angles which is already stored case wise.
+        }
+        context.closePath();                        //closes the path.
+        context.fill();                             // fills specified color in diagram.
+        context.stroke();
+    }
+
+    // drawSnowFlake(1);
+    // drawSnowFlake(2);
+
+    function typeChange()              // function to change type.
+    {
+        var ntypesCtl = document.getElementById('ntypes'); 
+        typ = ntypesCtl.selectedIndex;
+        levelChange();
+    }
+
+
+    function levelChange()         // function to change level.
+    {
+        var nLevelsCtl = document.getElementById('nLevels');
+        nLev = nLevelsCtl.selectedIndex;
+        drawSnowFlake(typ, nLev);
+    }
+
+    typeChange();
+    levelChange();
+
+    //-->
+  </script>
+
+</BODY>
+</HTML>
