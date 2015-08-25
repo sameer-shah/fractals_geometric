@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset=utf-8>
-<title> Geometric Fractals Illustrations </title>
+<title>Geometric Fractals</title>
 </head>
 
 <BODY>
@@ -13,17 +13,13 @@
     <OPTION value="1">...Koch Snowflake Inverse</OPTION>
     <OPTION value="2">-2-Triangle, both side growth </OPTION>
     <OPTION value="3">...Triangle, both side growth Inverse</OPTION>
-    <OPTION value="4">-3-Both sided triangle</OPTION>
-    <OPTION value="5">...Both sided triangle Inverse</OPTION>
-    <OPTION value="6">-4-Tringle, alternate side growth </OPTION>
-    <OPTION value="7">...Tringle, alternate side growth Inverse</OPTION>
-    <OPTION value="8">-5-Sierpinski Triangle 1</OPTION>
-    <OPTION value="9">...Sierpinski Triangle 2</OPTION>
+    <OPTION value="4">-3-Tringle, alternate side growth </OPTION>
+    <OPTION value="5">-4-Sierpinski Triangle 1</OPTION>
   </SELECT>
 
 
   <LABEL> Level: </LABEL>
-  <SELECT id='nLevels' onchange="levelChange();">
+    <SELECT id='nLevels' onchange="levelChange();">
     <OPTION value="0">0</OPTION>
     <OPTION value="1">1</OPTION>
     <OPTION value="2">2</OPTION>
@@ -34,7 +30,8 @@
     <OPTION value="7">7</OPTION>
   </SELECT>
 
- <canvas id="mycanvas" width="800" height="800"
+<P>
+  <canvas id="mycanvas" width="800" height="800"
         onmousedrag="moveHandler(event);"
         onmousedown="mouseDownHandler(event);">
   This text is displayed if your browser does not support HTML5 Canvas.
@@ -118,42 +115,8 @@
             xlP[5] = 0;
             break;
 
-        case 4:
-            var xct = 6;
-            var multiple = 4;
-            var factor = 3;
-            var xside = 1.5;
-            var xP = new Array(xct);
-            xP[0] = -3;
-            xP[1] = 2;
-            xP[2] = 2;
-            xP[3] = 3;
-            xP[4] = -2;
-            xP[5] = -2;
-            var xlP = new Array(multiple-1)
-            xlP[0] = -1;
-            xlP[1] =  2;
-            xlP[2] = -1;
-            break;
-        case 5:
-            var xct = 6;
-            var multiple = 4;
-            var factor = 3;
-            var xside = 1.5;
-            var xP = new Array(xct);
-            xP[0] = 3;
-            xP[1] = 2;
-            xP[2] = 2;
-            xP[3] = -3;
-            xP[4] = -2;
-            xP[5] = -2;
-            var xlP = new Array(multiple-1)
-            xlP[0] = -1;
-            xlP[1] =  2;
-            xlP[2] = -1;
-            break;
 
-        case 6:
+        case 4:
             var xct = 3;
             var multiple = 7;
             var factor = 5;
@@ -170,25 +133,8 @@
             xlP[4] = -2;
             xlP[5] = 1;
             break;
-        case 7:
-            var xct = 3;
-            var multiple = 7;
-            var factor = 5;
-            var xside = 1.5;
-            var xP = new Array(xct);
-            xP[0] = -2;
-            xP[1] = -2;
-            xP[2] = -2;
-            var xlP = new Array(multiple-1)
-            xlP[0] = -1;
-            xlP[1] =  2;
-            xlP[2] = -1;
-            xlP[3] = 1;
-            xlP[4] = -2;
-            xlP[5] = 1;
-            break;
 
-        case 8:
+        case 5:
             var xct = 3;
             var multiple = 5;
             var factor = 2;
@@ -197,21 +143,6 @@
             xP[0] = 2;
             xP[1] = 2;
             xP[2] = 2;
-            var xlP = new Array(multiple-1)
-            xlP[0] = -2;
-            xlP[1] = 2;
-            xlP[2] = 2;
-            xlP[3] = -2;
-            break;
-        case 9:
-            var xct = 3;
-            var multiple = 5;
-            var factor = 2;
-            var xside = 1.6;
-            var xP = new Array(xct);
-            xP[0] = -2;
-            xP[1] = -2;
-            xP[2] = -2;
             var xlP = new Array(multiple-1)
             xlP[0] = -2;
             xlP[1] = 2;
@@ -236,7 +167,7 @@
         }
 
 
-        var ct = xct;                   // this part of code create arreays for complete diagram.
+        var ct = xct;                   // this part of code create arrays for complete diagram.
         for (i = 0; i < nLev; i++)
            {ct *= multiple;}
         var i, j, k, l;
